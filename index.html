@@ -101,6 +101,25 @@
       background: radial-gradient(ellipse at 50% 60%, #1e1500 0%, var(--dark) 70%);
       z-index: 0;
     }
+    .hero-image {
+      position: absolute; inset: 0;
+      z-index: 0;
+      background-image: url('hero-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+      animation: heroZoom 18s ease-in-out infinite alternate;
+    }
+    /* dark wash so the headline stays readable over the photo */
+    .hero-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.4) 45%, var(--dark) 100%);
+    }
+    @keyframes heroZoom {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.12); }
+    }
     .hero-particles {
       position: absolute; inset: 0; z-index: 1;
       overflow: hidden;
@@ -129,13 +148,23 @@
     }
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 9vw, 8rem);
+      font-size: clamp(2.6rem, 7vw, 6rem);
       font-weight: 900;
-      line-height: 1;
+      line-height: 1.05;
       color: var(--white);
       opacity: 0;
     }
     .hero-title span { color: var(--gold); font-style: italic; }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+      color: var(--white);
+      opacity: 0;
+      margin-top: 20px;
+      max-width: 520px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.6;
+      animation: fadeIn 1s 1.6s forwards;
+    }
     .hero-sub {
       font-size: clamp(0.9rem, 2vw, 1.1rem);
       letter-spacing: 3px;
@@ -415,10 +444,28 @@
     #booking {
       background: var(--dark2);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .booking-image {
+      position: absolute; inset: 0;
+      z-index: 0;
+      background-image: url('drone-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+    .booking-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, var(--dark2) 0%, rgba(17,17,17,0.55) 50%, var(--dark2) 100%);
     }
     .booking-inner {
       max-width: 600px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     .booking-badge {
       display: inline-block;
@@ -605,6 +652,7 @@
       animation: blink 1.5s ease-in-out infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
     /* Scroll reveal */
     .reveal {
@@ -768,10 +816,12 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-image"></div>
   <div class="hero-particles" id="particles"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">📸 Kolhapur's Premier Photography Studio</p>
-    <h1 class="hero-title">Siddhi<br><span>Photo's</span></h1>
+    <p class="hero-eyebrow">Professional Photography</p>
+    <h1 class="hero-title">We Capture Your<br><span>Best Moments</span></h1>
+    <p class="hero-tagline">Professional photography services for every unforgettable moment.</p>
     <p class="hero-sub">Cinematic · Wedding · Modelling · Drone</p>
     <div class="hero-divider" id="heroDivider"></div>
     <a href="tel:9156195631" class="hero-cta">Book Your Session</a>
@@ -939,6 +989,7 @@
 
 <!-- BOOKING -->
 <section id="booking">
+  <div class="booking-image"></div>
   <div class="booking-inner">
     <div class="booking-badge reveal">✦ Booking Open ✦</div>
     <h2 class="booking-title reveal">Ready to<br><em style="color:var(--gold);font-family:'Playfair Display',serif;">Capture</em> Your Moment?</h2>
